@@ -27,7 +27,7 @@ export default function RecoveryCenter({ transactions }: { transactions: Transac
       } else {
         alert("Failed to draft message.");
       }
-    } catch (e) {
+    } catch {
       alert("Error reaching agent.");
     } finally {
       setDraftingFor(null);

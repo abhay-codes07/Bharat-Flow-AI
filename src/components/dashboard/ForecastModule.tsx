@@ -18,7 +18,7 @@ export function ForecastModule() {
         if (data.success) {
           setInsight(data.insight);
         }
-      } catch (e) {
+      } catch {
         setInsight("Unable to generate cash-flow forecast at this time.");
       } finally {
         setLoading(false);

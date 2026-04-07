@@ -4,7 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 
 const genai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     let ledgerContext = "";
 

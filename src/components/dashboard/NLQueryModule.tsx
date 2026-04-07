@@ -29,7 +29,7 @@ export default function NLQueryModule() {
       } else {
         setBriefing("I encountred an error accessing the ledger.");
       }
-    } catch (error) {
+    } catch {
       setBriefing("Connection error. Could not reach Chief of Staff.");
     } finally {
       setIsThinking(false);
@@ -66,7 +66,7 @@ export default function NLQueryModule() {
               exit={{ opacity: 0 }}
               className="h-full flex items-center justify-center text-zinc-600 text-sm italic text-center"
             >
-              Ask me something like:<br/>"What was my total profit last week?"
+              Ask me something like:<br/>&quot;What was my total profit last week?&quot;
             </motion.div>
           )}
         </AnimatePresence>
