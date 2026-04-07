@@ -8,9 +8,11 @@ export default function RecentActivity({ data }: { data: Transaction[] }) {
   if (data.length === 0) {
     return (
       <div className="bg-zinc-950/50 backdrop-blur-xl p-12 rounded-2xl shadow-lg border border-zinc-800/60 flex flex-col items-center justify-center text-center">
-        <Receipt className="h-10 w-10 text-zinc-600 mb-3" />
-        <h3 className="text-lg font-medium text-zinc-300">No recent activity</h3>
-        <p className="text-sm text-zinc-500 mt-1">Ready to manage your ledger</p>
+        <div className="bg-indigo-500/10 p-4 rounded-full mb-4">
+          <Receipt className="h-10 w-10 text-indigo-400" />
+        </div>
+        <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-400">Ledger is Empty</h3>
+        <p className="text-sm text-zinc-400 mt-2 max-w-[250px]">Get started by capturing a bill or using the Magic Mic to log an entry.</p>
       </div>
     );
   }

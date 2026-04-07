@@ -30,10 +30,10 @@ function SidebarLink({ href, icon, label, active }: { href: string; icon: React.
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all font-medium ${
+      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all font-medium ${
         active 
-          ? "bg-primary/10 text-primary" 
-          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          ? "bg-indigo-500/10 text-indigo-400 shadow-inner border border-indigo-500/20" 
+          : "text-muted-foreground hover:bg-zinc-900 hover:text-foreground"
       }`}
     >
       {icon}

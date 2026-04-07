@@ -4,6 +4,8 @@ import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
 import MagicMic from "@/components/ui/MagicMic";
+import DynamicIsland from "@/components/ui/DynamicIsland";
+import OmniSearch from "@/components/layout/OmniSearch";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground flex min-h-screen`}>
+      <body className={`${inter.className} bg-background text-foreground flex min-h-screen relative`}>
+        <DynamicIsland />
+        
         {/* Sidebar for desktop */}
-        <div className="hidden md:block w-64 border-r bg-muted/20">
+        <div className="hidden md:block w-64 border-r bg-zinc-950">
           <Sidebar />
         </div>
 

@@ -1,5 +1,6 @@
 import { Menu, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import OmniSearch from "./OmniSearch";
 
 export default function Navbar() {
   return (
@@ -10,9 +11,12 @@ export default function Navbar() {
         </div>
         <span className="font-bold text-lg tracking-tight">BharatFlow</span>
       </div>
-      <Button variant="ghost" size="icon" aria-label="Menu">
-        <Menu className="h-5 w-5" />
-      </Button>
+      <div className="flex items-center gap-2">
+        <OmniSearch />
+        <Button variant="ghost" size="icon" aria-label="Menu">
+          <Menu className="h-5 w-5" />
+        </Button>
+      </div>
     </header>
   );
 }
