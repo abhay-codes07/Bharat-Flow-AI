@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import { supabaseAdmin } from "@/lib/supabase";
 
 // Ensure this uses the edge runtime if preferred, or standard node. Standard node is easier for Formidable/Busboy, 
 // but we just use req.formData() which works in App Router on both.
@@ -80,13 +81,23 @@ export async function POST(req: NextRequest) {
     
     // Attempt to parse JSON strictly. 
     // Even though responseMimeType is json, sometimes Models wrap it.
-    let parsed = {};
+    // Default to 'expense' for bills/receipts
+    let parsed: any = {};
     try {
       parsed = JSON.parse(outputText);
     } catch {
-      // fallback in case of markdown wrapping
       const cleaned = outputText.replace(/```json/g, '').replace(/```/g, '').trim();
       parsed = JSON.parse(cleaned);
+    }
+
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      await supabaseAdmin.from('business_ledger').insert({
+        type: 'expense',
+        amount: parsed.totalAmount || 0,
+        vendor: parsed.vendorName || 'Unknown Vendor',
+        category: 'Bill Scan',
+        items: parsed.items || []
+      });
     }
 
     return NextResponse.json({ success: true, extractedData: parsed });
