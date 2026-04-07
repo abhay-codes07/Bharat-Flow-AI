@@ -5,7 +5,6 @@ import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
 import MagicMic from "@/components/ui/MagicMic";
 import DynamicIsland from "@/components/ui/DynamicIsland";
-import OmniSearch from "@/components/layout/OmniSearch";
 
 const inter = Inter({ subsets: ["latin"] });
 

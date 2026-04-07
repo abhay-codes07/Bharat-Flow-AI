@@ -9,6 +9,7 @@ export default function DynamicIsland() {
 
   // Expose a global method securely by attaching to window purely for MVP visual simulation
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).triggerIsland = (title: string, subtitle: string) => {
       setNotification({ title, subtitle });
       setTimeout(() => setNotification(null), 4000);
