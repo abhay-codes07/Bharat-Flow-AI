@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
-import VocalInstructionFab from "@/components/ui/VocalInstructionFab";
+import MagicMic from "@/components/ui/MagicMic";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +34,7 @@ export default function RootLayout({
           <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full relative">
             {children}
             {/* Floating Action Button */}
-            <VocalInstructionFab />
+            <MagicMic />
           </main>
         </div>
       </body>
