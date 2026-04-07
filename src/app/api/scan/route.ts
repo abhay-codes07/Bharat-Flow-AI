@@ -82,6 +82,7 @@ export async function POST(req: NextRequest) {
     // Attempt to parse JSON strictly. 
     // Even though responseMimeType is json, sometimes Models wrap it.
     // Default to 'expense' for bills/receipts
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let parsed: any = {};
     try {
       parsed = JSON.parse(outputText);

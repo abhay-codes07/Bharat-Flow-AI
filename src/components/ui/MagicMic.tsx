@@ -14,12 +14,14 @@ export default function MagicMic() {
   useEffect(() => {
     // Initialize SpeechRecognition
     if (typeof window !== "undefined") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       if (SpeechRecognition) {
         recognitionRef.current = new SpeechRecognition();
         recognitionRef.current.continuous = false;
         recognitionRef.current.interimResults = true;
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         recognitionRef.current.onresult = (event: any) => {
           let currentTranscript = "";
           for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -28,6 +30,7 @@ export default function MagicMic() {
           setTranscript(currentTranscript);
         };
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         recognitionRef.current.onerror = (event: any) => {
           console.error("Speech recognition error", event.error);
           stopListening();
@@ -41,6 +44,7 @@ export default function MagicMic() {
         };
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isListening]);
 
   const toggleListening = () => {
@@ -103,7 +107,7 @@ export default function MagicMic() {
             exit={{ opacity: 0, x: 20 }}
             className="bg-zinc-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-zinc-800 text-sm max-w-[250px] shadow-lg"
           >
-            <span className="text-zinc-200">"{transcript || "Listening..."}"</span>
+            <span className="text-zinc-200">&quot;{transcript || "Listening..."}&quot;</span>
           </motion.div>
         )}
       </AnimatePresence>

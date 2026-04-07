@@ -78,7 +78,7 @@ export default function Home() {
             </h3>
           </div>
           <p className="text-zinc-200 text-lg leading-relaxed font-medium">
-            "Your raw material inventory cost is up <span className="text-rose-400">12%</span> over the last 14 days. Recommend auditing vendor Y."
+            &quot;Your raw material inventory cost is up <span className="text-rose-400">12%</span> over the last 14 days. Recommend auditing vendor Y.&quot;
           </p>
         </motion.div>
 

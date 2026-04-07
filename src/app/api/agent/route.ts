@@ -60,6 +60,7 @@ export async function POST(req: NextRequest) {
     const outputText = response.text;
     if (!outputText) throw new Error("No output from model");
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let parsed: any = {};
     try {
       parsed = JSON.parse(outputText);
