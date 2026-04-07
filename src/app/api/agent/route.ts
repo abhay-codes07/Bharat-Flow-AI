@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     {
       "intent": "QUERY" | "ACTION" | "RECORD",
       "payload": {
-        "insight": "A brief, professional response to the user's request (under 15 words) as if you are their smart assistant.",
+        "insight": "A brief, professional response to the user's request (under 15 words) in the exact language the user spoke.",
         "type": "income" | "expense" | null,
         "amount": number | null,
         "category": "string" | null

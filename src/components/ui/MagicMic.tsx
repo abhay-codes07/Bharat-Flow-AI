@@ -9,6 +9,7 @@ export default function MagicMic() {
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [lang, setLang] = useState("en-IN");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
 
@@ -20,6 +21,7 @@ export default function MagicMic() {
       if (SpeechRecognition) {
         recognitionRef.current = new SpeechRecognition();
         recognitionRef.current.continuous = false;
+        recognitionRef.current.lang = lang;
         recognitionRef.current.interimResults = true;
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,7 +48,7 @@ export default function MagicMic() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isListening]);
+  }, [isListening, lang]);
 
   const toggleListening = () => {
     if (isListening) {
@@ -106,9 +108,20 @@ export default function MagicMic() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
-            className="bg-zinc-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-zinc-800 text-sm max-w-[250px] shadow-lg"
+            className="bg-zinc-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-zinc-800 text-sm max-w-[250px] shadow-lg flex flex-col gap-2"
           >
-            <span className="text-zinc-200">&quot;{transcript || "Listening..."}&quot;</span>
+            <div className="flex gap-2">
+              <select 
+                value={lang} 
+                onChange={e => setLang(e.target.value)} 
+                className="bg-zinc-800 text-zinc-300 rounded text-xs px-1 border-none outline-none"
+              >
+                <option value="en-IN">English</option>
+                <option value="hi-IN">Hindi</option>
+                <option value="ta-IN">Tamil</option>
+              </select>
+            </div>
+            <span className="text-zinc-200">&quot;{transcript || "Listening in your language..."}&quot;</span>
           </motion.div>
         )}
       </AnimatePresence>
