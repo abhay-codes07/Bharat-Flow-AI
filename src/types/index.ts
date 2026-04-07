@@ -9,4 +9,5 @@ export interface Transaction {
   items: TransactionItem[];
   gstAmount: number;
   totalAmount: number;
+  status?: "completed" | "pending";
 }
