@@ -27,6 +27,34 @@ export default function ProfilePage() {
         <p className="text-zinc-400 text-sm">Manage your multi-tenant isolation and localization settings.</p>
       </header>
 
+      {/* Subscription Tier Block */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-zinc-950/80 backdrop-blur-xl border border-indigo-500/30 p-8 rounded-3xl flex flex-col shadow-xl mb-8 relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 bg-indigo-600 font-bold px-4 py-1 text-xs rounded-bl-xl text-white">PRO TIER</div>
+        <h2 className="text-xl font-bold text-white mb-2">Billing & Subscription</h2>
+        <p className="text-zinc-400 text-sm mb-6">You are currently on the <strong className="text-indigo-400">Free Tier</strong> (5 Scans/day).</p>
+        
+        <div className="pt-4 border-t border-zinc-800">
+          <Button 
+            onClick={async () => {
+              try {
+                const res = await fetch("/api/stripe", { method: "POST" });
+                const { url } = await res.json();
+                if (url) window.location.href = url;
+              } catch (e) {
+                alert("Failed to initiate upgrade.");
+              }
+            }}
+            className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl"
+          >
+            Upgrade to Pro — Unlimited Scans
+          </Button>
+        </div>
+      </motion.div>
+
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
