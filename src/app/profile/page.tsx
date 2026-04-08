@@ -44,7 +44,8 @@ export default function ProfilePage() {
                 const res = await fetch("/api/stripe", { method: "POST" });
                 const { url } = await res.json();
                 if (url) window.location.href = url;
-              } catch (e) {
+              } catch (err) {
+                console.error(err);
                 alert("Failed to initiate upgrade.");
               }
             }}

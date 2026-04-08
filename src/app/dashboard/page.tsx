@@ -7,10 +7,12 @@ import NLQueryModule from "@/components/dashboard/NLQueryModule";
 import RecoveryCenter from "@/components/dashboard/RecoveryCenter";
 import { ForecastModule } from "@/components/dashboard/ForecastModule";
 import { Transaction } from "@/types";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Crown } from "lucide-react";
 import { motion } from "framer-motion";
+import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
+  const { user, isLoaded } = useUser();
   // Shared state reflecting local changes until a full real-time push mechanism is built
   const [transactions, setTransactions] = useState<Transaction[]>([
     {
@@ -39,8 +41,8 @@ export default function Home() {
     <div className="max-w-[1600px] mx-auto space-y-8 pb-20">
       <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500">
-            Command Center
+          <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500 flex items-center gap-3">
+            {isLoaded && user ? `Welcome, ${user.firstName || 'Merchant'}` : "Command Center"}
           </h1>
           <p className="text-zinc-400 mt-2 text-lg">Your elite financial intelligence dashboard.</p>
         </div>
@@ -50,6 +52,14 @@ export default function Home() {
         >
           <Sparkles size={16} className="text-indigo-400" />
           <span className="text-sm font-medium text-indigo-300">Agent Network Online</span>
+        </motion.div>
+        {/* MVP Mock Pro Badge logic */}
+        <motion.div 
+          whileHover={{ scale: 1.02 }}
+          className="bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-full hidden md:flex items-center gap-2 ml-2"
+        >
+          <Crown size={16} className="text-emerald-400" />
+          <span className="text-sm font-medium text-emerald-300">Bharat-Flow PRO</span>
         </motion.div>
       </header>
 

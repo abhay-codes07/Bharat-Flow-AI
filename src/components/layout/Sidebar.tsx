@@ -18,9 +18,12 @@ export default function Sidebar() {
         <SidebarLink href="#" icon={<Settings size={20} />} label="Settings" />
       </nav>
 
-      <div className="mt-auto p-4 border rounded-xl bg-orange-50 dark:bg-orange-950/20 text-sm">
-        <h4 className="font-semibold text-orange-800 dark:text-orange-400">Pro Plan Active</h4>
-        <p className="text-orange-600/80 dark:text-orange-500/80 mt-1">You have 45 AI scans remaining.</p>
+      <div className="mt-auto p-4 border border-emerald-900/30 rounded-xl bg-emerald-950/20 text-sm shadow-inner relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-16 h-16 bg-emerald-500/20 rounded-bl-full blur-xl" />
+        <h4 className="font-semibold text-emerald-400 flex items-center gap-2">
+           PRO PLAN
+        </h4>
+        <p className="text-emerald-500/80 mt-1 pb-1">Unlimited Agent Access</p>
       </div>
     </div>
   );
