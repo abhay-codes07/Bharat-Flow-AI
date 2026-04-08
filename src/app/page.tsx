@@ -1,96 +1,72 @@
 "use client";
 
-import { useState } from "react";
-import BillScanner from "@/components/dashboard/BillScanner";
-import RecentActivity from "@/components/dashboard/RecentActivity";
-import NLQueryModule from "@/components/dashboard/NLQueryModule";
-import RecoveryCenter from "@/components/dashboard/RecoveryCenter";
-import { ForecastModule } from "@/components/dashboard/ForecastModule";
-import { Transaction } from "@/types";
-import { Sparkles } from "lucide-react";
+import { Building2, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function Home() {
-  // Shared state reflecting local changes until a full real-time push mechanism is built
-  const [transactions, setTransactions] = useState<Transaction[]>([
-    {
-      vendorName: "Pending Supply Co.",
-      date: "2023-11-20",
-      items: [{ name: "Raw Material X", price: 1540 }],
-      gstAmount: 180,
-      totalAmount: 1720,
-      status: "pending",
-    },
-    {
-      vendorName: "Client Alpha",
-      date: "2023-11-19",
-      items: [{ name: "Service Fees", price: 50000 }],
-      gstAmount: 9000,
-      totalAmount: 59000,
-      status: "completed",
-    }
-  ]);
-
-  const handleScanComplete = (data: Transaction) => {
-    setTransactions((prev) => [data, ...prev]);
-  };
-
+export default function LandingPage() {
   return (
-    <div className="max-w-[1600px] mx-auto space-y-8 pb-20">
-      <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500">
-            Command Center
-          </h1>
-          <p className="text-zinc-400 mt-2 text-lg">Your elite financial intelligence dashboard.</p>
-        </div>
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-zinc-950 p-6">
+      
+      {/* Background Orbs */}
+      <motion.div 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+        transition={{ repeat: Infinity, duration: 8 }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600 rounded-full blur-[100px] -z-10"
+      />
+      <motion.div 
+        animate={{ scale: [1, 1.5, 1], opacity: [0.05, 0.15, 0.05] }}
+        transition={{ repeat: Infinity, duration: 12, delay: 2 }}
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600 rounded-full blur-[100px] -z-10"
+      />
+
+      <div className="z-10 text-center max-w-3xl">
         <motion.div 
-          whileHover={{ scale: 1.02 }}
-          className="bg-indigo-500/10 border border-indigo-500/20 px-4 py-2 rounded-full hidden md:flex items-center gap-2"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-zinc-300 text-sm mb-6"
         >
-          <Sparkles size={16} className="text-indigo-400" />
-          <span className="text-sm font-medium text-indigo-300">Agent Network Online</span>
+          <Building2 size={14} className="text-indigo-400" />
+          The ultimate CFO Agent for Indian MSMEs
         </motion.div>
-      </header>
-
-      {/* CSS Grid Bento Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(180px,auto)] gap-6">
         
-        {/* Top Left: Natural Language Query (Span 8 cols, 1 row on large displays) */}
-        <div className="md:col-span-12 lg:col-span-8 row-span-2 shadow-2xl">
-          <NLQueryModule />
-        </div>
+        <motion.h1 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-6xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500 tracking-tight leading-tight mb-6"
+        >
+          Elevate Your <br /> Business Flow.
+        </motion.h1>
 
-        {/* Top Right: Predictive Cash-Flow Forecast (Span 4 cols) */}
-        <div className="md:col-span-6 lg:col-span-4 row-span-1 shadow-2xl">
-          <ForecastModule />
-        </div>
+        <motion.p 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed font-medium"
+        >
+          Automate GST reporting, forecast revenue using Gemini Flash, and converse directly with your autonomous ledger.
+        </motion.p>
 
-        {/* Middle Right: Payment Recovery Center (Span 4 cols) */}
-        <div className="md:col-span-6 lg:col-span-4 row-span-2 shadow-2xl overflow-hidden">
-          <RecoveryCenter transactions={transactions} />
-        </div>
-
-        {/* Bottom Left: Bill Scanner (Span 8 cols) */}
-        <div className="md:col-span-12 lg:col-span-8 row-span-2 shadow-2xl">
-          <div className="bg-zinc-950/80 backdrop-blur-xl p-6 rounded-3xl border border-zinc-800 shadow-xl h-full flex flex-col">
-            <h2 className="text-xl font-bold tracking-tight text-zinc-100 mb-4">Intelligent Ledger Entry</h2>
-            <div className="flex-1">
-              <BillScanner onScanComplete={handleScanComplete} />
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Full: Recent Activity (Span 12 cols) */}
-        <div className="md:col-span-12 lg:col-span-12 row-span-2 shadow-2xl">
-          <div className="bg-zinc-950/80 backdrop-blur-xl p-6 rounded-3xl border border-zinc-800 shadow-xl h-full">
-             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold tracking-tight text-zinc-100">Recent Activity Context</h2>
-            </div>
-            <RecentActivity data={transactions} />
-          </div>
-        </div>
-
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <Link 
+            href="/sign-up" 
+            className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-full flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-900/50 hover:shadow-indigo-900"
+          >
+            Start Free Trial <ArrowRight size={18} />
+          </Link>
+          <Link 
+            href="/sign-in" 
+            className="w-full sm:w-auto px-8 py-4 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white font-semibold rounded-full flex items-center justify-center transition-all"
+          >
+            Sign In to Dashboard
+          </Link>
+        </motion.div>
       </div>
     </div>
   );
